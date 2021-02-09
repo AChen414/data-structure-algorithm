@@ -25,6 +25,7 @@ Input: s = ""
 Output: 0
 */
 
+// Queue
 var lengthOfLongestSubstring = function (s) {
     const queue = [];
     let letters = {};
@@ -46,6 +47,26 @@ var lengthOfLongestSubstring = function (s) {
         if (queue.length > max) max = queue.length
     }
     return max;
+};
+
+// Sliding Window
+var lengthOfLongestSubstring = function (s) {
+    const letters = {};
+    let windowStart = 0;
+    let maxLength = 0;
+    for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
+        if (!letters[s[windowEnd]]) {
+            letters[s[windowEnd]] = true;
+        } else {
+            while (letters[s[windowEnd]] === true) {
+                letters[s[windowStart]] = false;
+                windowStart++;
+            }
+            letters[s[windowEnd]] = true;
+        }
+        maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+    }
+    return maxLength;
 };
 
 console.log(lengthOfLongestSubstring("ohvhjdml"));
