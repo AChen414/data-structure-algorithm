@@ -10,7 +10,7 @@ For example, given [10, 40, 200, 1000, 60, 30], you should return [1, 2, 3, 4, 2
 function giveBonuses(array) {
     if (array.length === 1) return [1];
     const streaks = getStreaks(array);
-    
+
     console.log(streaks);
 
 }
