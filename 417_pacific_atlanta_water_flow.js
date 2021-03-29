@@ -31,8 +31,8 @@ Return:
 var pacificAtlantic = function (matrix) {
     const result = [];
     if (matrix.length === 0) return result;
-    const pacific = new Array(matrix.length).fill(new Array(matrix[0].length));
-    const atlantic = new Array(matrix.length).fill(new Array(matrix[0].length));
+    const pacific = new Array(matrix.length).fill().map(() => new Array(matrix[0].length).fill(false));
+    const atlantic = new Array(matrix.length).fill().map(() => new Array(matrix[0].length).fill(false));
     const PQ = [];
     const AQ = [];
     for (let i = 0; i < matrix.length; i++) {
@@ -45,7 +45,7 @@ var pacificAtlantic = function (matrix) {
         PQ.push([0, i]);
         AQ.push([matrix.length - 1, i]);
         pacific[0][i] = true;
-        atlantic[matrix.length - 1, i] = true;
+        atlantic[matrix.length - 1][i] = true;
     }
     bfs(matrix, PQ, pacific);
     bfs(matrix, AQ, atlantic);
@@ -70,3 +70,9 @@ var bfs = function (matrix, queue, visited) {
         }
     }
 }
+
+let matrix = [[1, 2, 2, 3, 5], [3, 2, 3, 4, 4], [2, 4, 5, 3, 1], [6, 7, 1, 4, 5], [5, 1, 1, 2, 4]];
+console.log(pacificAtlantic(matrix));
+
+// Time: O(m * n) where m is the number of rows and n is the number of columns
+// Space: O(m * n)
