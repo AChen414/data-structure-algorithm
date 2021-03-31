@@ -47,3 +47,23 @@ var LIS = function (nums, prev, i) {
     let notIncluded = LIS(nums, prev, i + 1);
     return Math.max(include, notIncluded);
 }
+
+
+// Time: O(n^2) since we use a nested loop
+// Space: O(n) for the dp array
+var lengthOfLIS = function (nums) {
+    const dp = [1];
+    let result = 1;
+    for (let i = 0; i < nums.length; i++) {
+        let max = 0;
+        for (let j = 0; j < i; j++) {
+            if (nums[j] < nums[i]) {
+                max = Math.max(max, dp[j]);
+            }
+        }
+        dp[i] = max + 1;
+        result = Math.max(result, dp[i]);
+    }
+    return result;
+};
+
