@@ -27,3 +27,28 @@ function knapsackRecursion(profits, weights, capacity, currentIndex) {
     const profit2 = knapsackRecursion(profits, weights, capacity, currentIndex + 1);
     return Math.max(profit1, profit2);
 }
+
+// Time: O(N * C) where N is the number of items and C is the knapsack capacity
+// Space: O(N * C) for the memoization array
+function knapsack(profits, weights, capacity) {
+    const dp = [];
+
+    const knapsackRecursion = (profits, weights, capacity, currentIndex) => {
+        if (capacity <= 0 || currentIndex >= profits.length) return 0;
+
+        dp[currentIndex] = dp[currentIndex] || [];
+        if (dp[currentIndex][capacity] !== undefined) {
+            return dp[currentIndex][capacity];
+        }
+
+        let profit1 = 0;
+        if (weights[currentIndex] <= capacity) {
+            profit1 = profits[currentIndex] + knapsackRecursion(profits, weights, capacity - weights[currentIndex], currentIndex + 1);
+        }
+        const profit2 = knapsackRecursion(profits, weights, capacity, currentIndex + 1);
+        dp[currentIndex][capacity] = Math.max(profit1, profit2);
+        return dp[currentIndex][capacity];
+    }
+
+    return knapsackRecursion(profits, weights, capacity, 0);
+}
