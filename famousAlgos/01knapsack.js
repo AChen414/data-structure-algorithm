@@ -31,7 +31,7 @@ function knapsackRecursion(profits, weights, capacity, currentIndex) {
 // Time: O(N * C) where N is the number of items and C is the knapsack capacity
 // Space: O(N * C) for the memoization array
 function knapsack(profits, weights, capacity) {
-    const dp = [];
+    const dp = []; // 2D array of stored results of subproblems
 
     const knapsackRecursion = (profits, weights, capacity, currentIndex) => {
         if (capacity <= 0 || currentIndex >= profits.length) return 0;
