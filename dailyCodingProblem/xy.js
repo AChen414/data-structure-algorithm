@@ -24,6 +24,29 @@ const minFlips = string => {
     return Math.min(dp[string.length - 1][0], dp[string.length - 1][1]);
 }
 
+// Time: O(n)
+// Space: O(1)
+
+// const minFlips = string => {
+//     let x = 0;
+//     for (let i = 0; i < string.length; i++) {
+//         if (string[i] === 'x') x++;
+//     }
+//     if (x === 0 || x === string.length) return 0;
+//     let minimumFlips = Infinity;
+//     let current = 0;
+//     let flips;
+//     for (let i = 0; i < string.length; i++) {
+//         if (string[i] === 'y') current++;
+//         flips = current + (x - (i + 1 - current));
+//         minimumFlips = Math.min(minimumFlips, flips);
+//     }
+
+//     return minimumFlips;
+// }
+
+// Works but always prioritizes x's
+
 console.log(minFlips('yyx'))
 console.log(minFlips('xyxxxyxyyy'))
 console.log(minFlips('xyxxxyxyyx'))
