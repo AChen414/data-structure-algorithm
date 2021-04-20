@@ -13,26 +13,26 @@ Given a 5 by 5 matrix, there are 70 ways to get to the bottom right
 
 // Time: O(2^(m + n))
 // Space: O(m + n)
+const matrixTraversal = (n, m) => {
+    if (n === 1 || m === 1) return 1;
+    return matrixTraversal(n - 1, m) + matrixTraversal(n, m - 1);
+}
+
 // const matrixTraversal = (n, m) => {
-//     if (n === 1 || m === 1) return 1;
-//     return matrixTraversal(n - 1, m) + matrixTraversal(n, m - 1);
+//     const dp = new Array(n).fill().map(() => new Array(m).fill(null));
+//     return traversalHelper(n - 1, m - 1, dp);
 // }
 
-const matrixTraversal = (n, m) => {
-    const dp = new Array(n).fill().map(() => new Array(m).fill(null));
-    
-    const traversalHelper = (n, m) => {
-        if (n === 1 || m === 1) {
-            return 1;
-        } else if (dp[n][m] > 0) {
-            return dp[n][m];
-        } else {
-            dp[n][m] = matrixTraversal(n - 1, m) + matrixTraversal(n - 1, m);
-            return dp[n][m];
-        }
-    }
-    return traversalHelper(n, m);
-}
+// const traversalHelper = (n, m, dp) => {
+//     if (n === 0 || m === 0) {
+//         return 1;
+//     } else if (dp[n][m]) {
+//         return dp[n][m];
+//     } else {
+//         dp[n][m] = traversalHelper(n - 1, m, dp) + matrixTraversal(n, m - 1, dp);
+//         return dp[n][m];
+//     }
+// }
 
 console.log(matrixTraversal(2, 2))
 console.log(matrixTraversal(3, 3))
