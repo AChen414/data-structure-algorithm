@@ -19,6 +19,7 @@ class LinkedList {
 
 // Time: O(n)
 // Space: O(1)
+
 const reverseLinkedList = (head) => {
     let prevNode = null;
     let currentNode = head;
