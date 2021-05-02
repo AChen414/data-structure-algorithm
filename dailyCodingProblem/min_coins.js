@@ -19,5 +19,5 @@ const minCoins = (n) => {
             }
         }
     }
-    return dp[n];
+    return dp[n] === n + 1 ? -1 : dp[n];
 }
