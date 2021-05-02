@@ -15,3 +15,6 @@ const longestCommonSubsequence = (string1, string2) => {
     }
     return dp[string1.length][string2.length];
 }
+
+// Time: O(m*n) where m and n are the length of the strings
+// Space: O(m*n)
