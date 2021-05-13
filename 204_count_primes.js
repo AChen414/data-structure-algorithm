@@ -44,3 +44,27 @@ function isPrime(n) {
 
 // Time: O(n^(3/2))
 // Space: O(1)
+
+var countPrimes = function (n) {
+    // Fill boolean array with all numbers from 0 to n
+    const primes = new Array(n).fill(true);
+
+    // go through each number and if it is a prime then all multiples of that number is also prime
+    for (let i = 2; i * i < primes.length; i++) {
+        if (primes[i]) {
+            for (let j = i; j * i < primes.length; j++) {
+                primes[i * j] = false;
+            }
+        }
+    }
+
+    // count the primes in the boolean array
+    let count = 0;
+    for (let i = 2; i < primes.length; i++) {
+        if (primes[i]) count++;
+    }
+    return count;
+}
+
+// Time: O(sqrt(n)loglogn)
+// Space: O(n)
